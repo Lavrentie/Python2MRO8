@@ -3,35 +3,33 @@ import pygame
 import objects
 from objects import *
 from Constants import *
-pygame.init()
 
 class Game:
-    def __init__(Self):
+    def __init__(self):
         pygame.init()
         pygame.mixer.init()
 
-        Self.clock = pygame.time.set_timer
-        Self.screen = pygame.display.set_mode([WIN_WIDTH, WIN_HEIGHT])
+        self.clock = pygame.time.set_timer
+        self.screen = pygame.display.set_mode([WIN_WIDTH, WIN_HEIGHT])
         pygame.display.set_caption('Platformer Game')
-        Self.background_image = pygame.image.load("backgraund.jpg")
-        Self.all_sprite_list = pygame.sprite.Group()
+        self.background_image = pygame.image.load("backgraund.jpg")
+        self.all_sprite_list = pygame.sprite.Group()
 
-        Self.platform_list = pygame.sprite.Group()
-        Self.create_platforms()
+        self.platform_list = pygame.sprite.Group()
+        self.create_platforms()
 
-        Self.artifact_list = pygame.sprite.Group()
-        Self.create_artifacts()
+        self.artifact_list = pygame.sprite.Group()
+        self.create_artifacts()
 
-        Self.player = objects.Player (0, 0)
-        Self.player.platforms = Self.platform_list
-        Self.player.artifact = Self.artifact_list
-        Self.all_sprite_list.add(Self.player)
+        self.player = objects.Player (0, 0)
+        self.player.platforms = self.platform_list
+        self.player.artifact = self.artifact_list
+        self.all_sprite_list.add(self.player)
 
-    def new_method(Self):
-        Self.clock = pygame.time.clock( )
+    def new_method(self):
+        self.clock = pygame.time.clock( )
 
-
-    def create_platforms(Self):
+    def create_platforms(self):
         platform_coords = [
                      [200, 450],
                      [200, 500],
@@ -63,10 +61,10 @@ class Game:
                                    ]
         for coord in platform_coords:
             platform = object.platform(coord[0], coord[1])
-            Self.platform_list.add(platform)
-            Self.all_sprite_list.add(platform)
+            self.platform_list.add(platform)
+            self.all_sprite_list.add(platform)
 
-    def create_artifact(Self):
+    def create_artifact(self):
         artifact_coords = [
                      [200, 250],
                      [200, 300],
@@ -94,13 +92,13 @@ class Game:
                            ]
         for coord in artifact_coords:
                     platform = objects.artifact(coord[0], coord[1])
-                    Self.artifacts_list.add(objects.artifact)
-                    Self.all_sprite_list.add(objects.artifact)
+                    self.artifacts_list.add(objects.artifact)
+                    self.all_sprite_list.add(objects.artifact)
         def run(self):
             done = False
 
-            Self.screen.blit(Self.background_image, (0,0))
-            Self.all_sprite_list.draw(Self.screen)
+            self.screen.blit(self.background_image, (0,0))
+            self.all_sprite_list.draw(self.screen)
 
 
             while not done:
@@ -109,7 +107,7 @@ class Game:
                         done = True
                 pygame.display.update()
                 pygame.display.flip()
-                Self.clock.tick(FPS)
+                self.clock.tick(FPS)
 
             pygame.quit()
 
